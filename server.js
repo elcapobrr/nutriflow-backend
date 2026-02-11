@@ -1,8 +1,8 @@
+require('dotenv').config(); // MUST be first to load env vars
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('./config/passport');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -19,7 +19,7 @@ app.use(cors({
     origin: (origin, callback) => {
         // Allow requests with no origin (mobile apps, Postman, etc.)
         if (!origin) return callback(null, true);
-        
+
         if (allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
